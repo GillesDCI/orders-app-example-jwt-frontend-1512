@@ -2,13 +2,14 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import ListUsers from "./components/ListUsers";
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import ListUsers from "./pages/ListUsers";
 import Navigation from "./components/Navigation/indexPrevious";
 import Greeting from "./components/Greeting";
 import ProtectedRoute from "./components/Common/ProtectedRoute";
 import Header from "./components/Partials/Header";
+import Register from "./pages/Register";
 
 export const AppContext = createContext({
   username: "",
@@ -51,6 +52,7 @@ function App() {
           {loggedIn ? <Greeting /> : null}
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/list-users" element={<ProtectedRoute auth={loggedIn}><ListUsers /></ProtectedRoute>} />
           </Routes>
