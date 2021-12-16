@@ -14,7 +14,32 @@ export default function Register(){
 
 
     const handleSubmit = async (event) => {
+        event.preventDefault();
         console.log("Submit the form");
+        const formData = new FormData(event.target);
+
+        const data = {
+          firstname:formData.get("firstname"),//get the data from the input with name firstname
+          lastname:formData.get("lastname"),//get the data from the input with name lastname
+          username:formData.get('username'),//get the data from the input with name username
+          email: formData.get("email"),//...
+          password: formData.get("password"),
+        };
+
+        try {
+           const response = await axios.post("/api/users/register", data); 
+           
+           if(response.status === 200){
+               //everything went well! 
+               console.log("user was created");
+               navigate("/login");
+           }
+
+        } catch (error) {
+            console.log(error);
+            setIsError(true);
+            setErrorMessage(error.response.data.message);
+        }
     }
 
 

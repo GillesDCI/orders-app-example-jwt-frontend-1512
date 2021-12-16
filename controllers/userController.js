@@ -14,11 +14,11 @@ exports.registerUser = async (req, res) => {
     user.email = req.body.email;
     user.password = hashedPassword;
     //ADMIN,ACCOUNTANT
-    const roles = req.body.roles.split(",");
+    // const roles = req.body.roles.split(",");
 
-    roles.forEach((role) => {
-      user.roles.push(role);
-    });
+    // roles.forEach((role) => {
+    //   user.roles.push(role);
+    // });
 
     await user.save();
 

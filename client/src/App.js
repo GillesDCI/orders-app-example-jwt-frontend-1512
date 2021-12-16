@@ -10,6 +10,7 @@ import Greeting from "./components/Greeting";
 import ProtectedRoute from "./components/Common/ProtectedRoute";
 import Header from "./components/Partials/Header";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 export const AppContext = createContext({
   username: "",
@@ -49,12 +50,14 @@ function App() {
         <BrowserRouter>
           <Header loggedIn={loggedIn} />
           {/* <Navigation /> */}
-          {loggedIn ? <Greeting /> : null}
+          {/* {loggedIn ? <Greeting /> : null} */}
           <Routes>
+            <Route path="/" element={<Greeting />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/list-users" element={<ProtectedRoute auth={loggedIn}><ListUsers /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute auth={loggedIn}><Profile /></ProtectedRoute>} />
           </Routes>
         </BrowserRouter>
       </div>
